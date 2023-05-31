@@ -108,7 +108,7 @@ const saveFile = (req, res) => {
 };
 
 const getNodeMailer = (req, res) => {
-  res.send({ message: "succesful", status: true });
+  // res.send({ message: "succesful", status: true });
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -132,10 +132,12 @@ const getNodeMailer = (req, res) => {
 
   transporter.sendMail(mailoptions)
   .then((response)=>{
+    res.send({status:"true", message:"Successful", response})
     console.log(response);
   })
   .catch((error)=>{
     console.log(error);
+    res.send({error})
   })
 };
 
